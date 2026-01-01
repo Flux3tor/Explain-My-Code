@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
         issuesEl.textContent = "";
 
         try {
-            const response = await fetch("http://localhost:3000/explain", {
+            const response = await fetch("https://explain-my-code.onrender.com/explain", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
