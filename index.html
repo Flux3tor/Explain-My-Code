@@ -7,24 +7,38 @@
     </head>
 <body>
     
-    <h1>Explain My Code</h1>
-    <p>Paste your code below and get an explanation.</p>
-    <textarea id="codeInput" placeholder="Paste your code here" rows="12" cols="80"></textarea>
-    
-    <br><br>
-    <button id="explainBtn">Explain</button>
-    
-    <h2>Explanation</h2>
-    
-    <h3>Overview</h3>
-    <pre id="overview"></pre>
+    <div class="container">
+     <h1>Explain My Code</h1>
+     <p class="subtitle">Paste code and get a clean explanation instantly.</p>
 
-    <h3>Line by line</h3>
-    <pre id="lineByLine"></pre>
+    <div class="card">
+        <textarea id="codeInput"></textarea>
 
-    <h3>Issues & Suggestions</h3>
-    <pre id="issues"></pre>
+    <div class="actions">
+      <span class="loading" id="loadingText"></span>
+      <button id="explainBtn">Explain</button>
+        </div>
+    </div>
 
-    <script src="script.js"></script>
+  <div class="results">
+    <div class="card">
+      <h3>Overview</h3>
+      <pre id="overview"></pre>
+    </div>
+
+    <div class="card">
+      <h3>Line by Line</h3>
+      <pre id="lineByLine"></pre>
+    </div>
+
+    <div class="card">
+      <h3>Issues & Suggestions</h3>
+      <pre id="issues"></pre>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+
 </body>
 </html>
