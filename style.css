@@ -1,0 +1,10 @@
+body {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 40px auto;
+}
+
+textarea {
+    width: 100%;
+    font-family: monospace;
+}
