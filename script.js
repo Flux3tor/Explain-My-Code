@@ -1,19 +1,34 @@
-const button = document.getElementById("explainBtn");
-const input = document.getElementById("codeInput");
-const output = document.getElementById("output");
+document.addEventListener("DOMContentLoaded", () => {
+  const input = document.getElementById("codeInput");
+  const button = document.getElementById("explainBtn");
+  const output = document.getElementById("output");
 
-button.addEventListener("click", () => {
-  const code = input.value.trim();
+  // Disable button initially
+  button.disabled = true;
 
-  if (!code) {
-    output.textContent = "Please paste some code first.";
-    return;
-  }
+  // Enable/disable button based on input
+  input.addEventListener("input", () => {
+    const hasText = input.value.trim().length > 0;
+    button.disabled = !hasText;
+    output.textContent = "";
+  });
 
-  const lines = code.split("\n").length;
+  // Handle explain click
+  button.addEventListener("click", () => {
+    button.disabled = true;
+    output.textContent = "Analyzing...";
 
-  output.textContent =
-    `Your code has ${lines} line(s).\n\n` +
-    `This is a placeholder explanation.\n` +
-    `Soon, this will explain what the code does line by line.`;
+    // Simulate processing delay
+    setTimeout(() => {
+      const code = input.value.trim();
+      const lines = code.split("\n").length;
+
+      output.textContent =
+        `Your code has ${lines} line(s).\n\n` +
+        `This is a placeholder explanation.\n` +
+        `Soon, this will explain what the code does line by line.`;
+
+      button.disabled = false;
+    }, 600);
+  });
 });
