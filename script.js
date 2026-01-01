@@ -17,28 +17,33 @@ document.addEventListener("DOMContentLoaded", () => {
         issuesEl.textContent = "";
     });
 
-    button.addEventListener("click", () => {
+    button.addEventListener("click", async () => {
         button.disabled = true;
 
         overviewEl.textContent = "Analyzing...";
         lineByLineEl.textContent = "";
         issuesEl.textContent = "";
 
-        setTimeout(() => {
-            const code = input.value.trim();
-            const lines = code.split("\n").length;
+        try {
+            const response = await fetch("http://localhost:3000/explain", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    code: input.value
+                })
+            });
+            
+            const result = await response.json();
+            renderResult(result);
+        } catch (err) {
+            overviewEl.textContent = "Backend error.";
+        }
 
-            // Fake structured result (this is IMPORTANT)
-            const result = {
-                 overview: `This code contains ${lines} line(s) and performs some operations.`,
-                lineByLine: "Each line will be explained here in the future.",
-                issues: "No issues detected yet."
-            };
-
-            renderResult(result)
-            button.disabled = false;
-        }, 600);
+        button.disabled = false
     });
+
     function renderResult(result) {
         overviewEl.textContent = result.overview;
         lineByLineEl.textContent = result.lineByLine;
