@@ -26,6 +26,7 @@ Rules:
 - Do NOT include markdown
 - Do NOT include backticks
 - Do NOT include comments
+- Preserve indentation, tabs, and line breaks exactly in explanations.
 
 Return exactly this structure:
 {
