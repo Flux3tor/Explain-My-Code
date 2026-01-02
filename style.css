@@ -135,3 +135,12 @@ pre {
   margin-bottom: 10px;
   font-size: 1.1rem;
 }
+
+pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #e5e7eb;
+}
