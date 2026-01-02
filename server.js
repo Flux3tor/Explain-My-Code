@@ -18,22 +18,22 @@ You are a coding assistant.
 
 Explain the following code.
 
-For "lineByLine":
-- Explain EACH line in plain English
-- Prefix each explanation with the line itself
-- Do NOT repeat the raw code alone
-- Each line must include an explanation
+Return ONLY valid JSON.
+Rules:
+- Use DOUBLE QUOTES only
+- Escape all newlines as \\n
+- Escape all quotes inside strings
+- Do NOT include markdown
+- Do NOT include backticks
+- Do NOT include comments
+- Preserve indentation, tabs, and line breaks exactly in explanations.
 
-Return ONLY valid JSON in this exact format:
+Return exactly this structure:
 {
-  "overview": "short overview",
-  "lineByLine": "explanation for each line, preserving newlines",
-  "issues": "possible issues or improvements"
+  "overview": "string",
+  "lineByLine": "string",
+  "issues": "string"
 }
-
-Preserve indentation and line breaks.
-Do NOT include markdown.
-Do NOT include code blocks.
 
 Code:
 ${code}
