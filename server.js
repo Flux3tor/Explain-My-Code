@@ -3,7 +3,30 @@ const express = require("express");
 const cors = require("cors");
 
 const app = express();
-app.use(cors());
+
+// Strict middleware: only allow requests from the website
+const allowedOrigin = "https://explainmycode.flux3tor.xyz/";
+app.use((req, res, next) => {
+  const origin = req.get("origin");
+  const referer = req.get("referer");
+  if (
+    (origin && origin === allowedOrigin) ||
+    (referer && referer.startsWith(allowedOrigin))
+  ) {
+    return next();
+  }
+  console.log(
+    `Blocked non-browser or unauthorized request. Origin: ${origin}, Referer: ${referer}`
+  );
+  res.status(403).json({ error: "Forbidden: Requests must come from the website." });
+});
+
+app.use(
+  cors({
+    origin: allowedOrigin,
+    optionsSuccessStatus: 200
+  })
+);
 app.use(express.json());
 
 app.post("/explain", async (req, res) => {
@@ -93,12 +116,8 @@ res.json(parsed);
   }
 });
 
-app.listen(3000, () => {
-  console.log("Server running on http://localhost:3000");
-});
 
 const PORT = process.env.PORT || 3000;
-
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
