@@ -62,7 +62,6 @@ ${code}
 
     let text = data.choices[0].message.content;
 
-    // 🔥 CLEAN UP MARKDOWN CODE FENCES IF MODEL ADDS THEM
     text = text.trim();
 
     if (text.startsWith("```")) {
@@ -75,9 +74,8 @@ ${code}
 try {
   parsed = JSON.parse(text);
 } catch (e) {
-  // 🛟 LAST-RESORT FIX: sanitize bad escapes
   const fixed = text
-    .replace(/\\(?!["\\/bfnrtu])/g, "\\\\") // fix invalid escapes
+    .replace(/\\(?!["\\/bfnrtu])/g, "\\\\")
     .replace(/\r?\n/g, "\\n");
 
   parsed = JSON.parse(fixed);
@@ -104,3 +102,4 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+
