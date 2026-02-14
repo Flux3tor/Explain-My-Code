@@ -4,9 +4,11 @@ const cors = require("cors");
 
 const app = express();
 
-// Strict middleware: only allow requests from the website
-const allowedOrigin = "https://explainmycode.flux3tor.xyz/";
+const allowedOrigin = "https://explainmycode.flux3tor.xyz";
 app.use((req, res, next) => {
+  if (req.method === "OPTIONS") {
+    return next();
+  }
   const origin = req.get("origin");
   const referer = req.get("referer");
   if (
